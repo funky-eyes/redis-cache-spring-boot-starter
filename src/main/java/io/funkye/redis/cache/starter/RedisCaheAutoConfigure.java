@@ -23,6 +23,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 
 import io.funkye.redis.cache.starter.config.JedisCacheProperties;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.Jedis;
 
 @ComponentScan(basePackages = {"io.funkye.redis.cache.starter.config", "io.funkye.redis.cache.starter.service",
@@ -67,7 +68,8 @@ public class RedisCaheAutoConfigure {
         @Qualifier("jedisCacheConnectionFactory") JedisConnectionFactory jedisCacheConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(jedisCacheConnectionFactory);
-        redisTemplate.setKeySerializer(new JdkSerializationRedisSerializer());
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(redisTemplate.getKeySerializer());
         redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
         redisTemplate.afterPropertiesSet();
         return redisTemplate;

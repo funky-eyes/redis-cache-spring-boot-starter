@@ -60,7 +60,7 @@ public class RedisClusterCacheAspect {
         }
         if (annotation.type() == 1) {
             String[] removeKey = annotation.remove();
-            Long keys = 0l;
+            Long keys = 0L;
             if (removeKey == null || removeKey.length <= 0) {
                 if (removeKey[0].length() <= 0) {
                     keys = redisCacheService.delete(redisCacheService.keys(annotation.key() + "*"));

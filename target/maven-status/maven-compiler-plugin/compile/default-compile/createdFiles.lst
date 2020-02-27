@@ -1,0 +1,6 @@
+io\funkye\redis\cache\starter\config\JedisCacheProperties.class
+io\funkye\redis\cache\starter\RedisCaheAutoConfigure.class
+io\funkye\redis\cache\starter\config\annotation\RedisCache.class
+io\funkye\redis\cache\starter\service\IRedisCacheService.class
+io\funkye\redis\cache\starter\aspect\RedisClusterCacheAspect.class
+io\funkye\redis\cache\starter\service\impl\RedisCacheServiceImpl.class
