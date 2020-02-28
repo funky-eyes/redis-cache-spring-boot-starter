@@ -19,7 +19,7 @@ import io.funkye.redis.cache.starter.config.annotation.RedisCache;
 import io.funkye.redis.cache.starter.service.IRedisCacheService;
 
 /**
- * -动态拦截分布式锁
+ * -动态拦截实现redis二级缓存
  *
  * @author chenjianbin
  * @version 1.0.0
@@ -43,13 +43,15 @@ public class RedisClusterCacheAspect {
         String key = annotation.key();
         Object o = null;
         if (annotation.type() == 0) {
-            key = key + joinPoint.getTarget().getClass().getName() + signature.getName() + getNameAndValue(joinPoint);
+            StringBuffer buffer = new StringBuffer();
+            key = buffer.append(key).append(joinPoint.getTarget().getClass().getName()).append(signature.getName())
+                .append(getNameAndValue(joinPoint)).toString();
             o = redisCacheService.get(key);
             if (o != null) {
-                LOGGER.info("########## 命中缓存:{} ##########", key);
+                LOGGER.debug("########## 命中缓存:{} ##########", key);
                 return o;
             } else {
-                LOGGER.info("########## 缓存不存在:{} ##########", key);
+                LOGGER.debug("########## 缓存不存在:{} ##########", key);
             }
         }
         try {
@@ -61,22 +63,15 @@ public class RedisClusterCacheAspect {
         if (annotation.type() == 1) {
             String[] removeKey = annotation.remove();
             Long keys = 0L;
-            if (removeKey == null || removeKey.length <= 0) {
-                if (removeKey[0].length() <= 0) {
-                    keys = redisCacheService.delete(redisCacheService.keys(annotation.key() + "*"));
-                    if (keys > 0) {
-                        LOGGER.info("########## 清除缓存成功:{} ##########", keys);
-                    }
-                }
-            } else {
-                for (int i = 0; i < removeKey.length; i++) {
-                    Set<String> deletes = redisCacheService.keys(annotation.key() + "*");
-                    keys += redisCacheService.delete(deletes);
-                }
-                LOGGER.info("########## 清除缓存成功:{} ##########", keys);
+            for (String s : removeKey) {
+                Set<String> deletes = redisCacheService.keys(s + "*");
+                keys += redisCacheService.delete(deletes);
+            }
+            if (keys > 0) {
+                LOGGER.debug("########## 清除缓存成功:{} ##########", keys);
             }
         } else {
-            LOGGER.info("########## 添加缓存成功:{} ##########", key);
+            LOGGER.debug("########## 添加缓存成功:{} ##########", key);
             redisCacheService.setIfAbsent(key, o, Duration.ofMillis(annotation.timeoutMills()));
         }
         return o;

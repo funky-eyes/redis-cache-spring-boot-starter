@@ -2,6 +2,9 @@ package io.funkye.redis.cache.starter.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * @author 陈健斌
+ */
 @ConfigurationProperties(prefix = JedisCacheProperties.JEDIS_PREFIX)
 public class JedisCacheProperties {
     public static final String JEDIS_PREFIX = "redis.cache.server";
