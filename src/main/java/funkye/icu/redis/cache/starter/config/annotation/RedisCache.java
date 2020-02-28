@@ -1,4 +1,4 @@
-package io.funkye.redis.cache.starter.config.annotation;
+package funkye.icu.redis.cache.starter.config.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

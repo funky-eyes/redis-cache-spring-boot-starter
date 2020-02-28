@@ -1,8 +1,10 @@
-package io.funkye.redis.cache.starter.aspect;
+package funkye.icu.redis.cache.starter.aspect;
 
 import java.time.Duration;
 import java.util.Set;
 
+import funkye.icu.redis.cache.starter.config.annotation.RedisCache;
+import funkye.icu.redis.cache.starter.service.IRedisCacheService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,9 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
-
-import io.funkye.redis.cache.starter.config.annotation.RedisCache;
-import io.funkye.redis.cache.starter.service.IRedisCacheService;
 
 /**
  * -动态拦截实现redis二级缓存
@@ -33,7 +32,7 @@ public class RedisClusterCacheAspect {
     @Autowired
     private IRedisCacheService<String, Object> redisCacheService;
 
-    @Pointcut("@annotation(io.funkye.redis.cache.starter.config.annotation.RedisCache)")
+    @Pointcut("@annotation(funkye.icu.redis.cache.starter.config.annotation.RedisCache)")
     public void annotationPoinCut() {}
 
     @Around(value = "annotationPoinCut()")

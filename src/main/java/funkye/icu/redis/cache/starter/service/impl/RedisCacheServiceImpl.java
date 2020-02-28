@@ -1,4 +1,4 @@
-package io.funkye.redis.cache.starter.service.impl;
+package funkye.icu.redis.cache.starter.service.impl;
 
 import java.time.Duration;
 import java.util.Set;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import io.funkye.redis.cache.starter.service.IRedisCacheService;
+import funkye.icu.redis.cache.starter.service.IRedisCacheService;
 
 /**
  * -redis服务实现

@@ -1,9 +1,10 @@
-package io.funkye.redis.cache.starter;
+package funkye.icu.redis.cache.starter;
 
 import java.time.Duration;
 
 import javax.annotation.PostConstruct;
 
+import funkye.icu.redis.cache.starter.config.JedisCacheProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,11 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 
-import io.funkye.redis.cache.starter.config.JedisCacheProperties;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.Jedis;
 
-@ComponentScan(basePackages = {"io.funkye.redis.cache.starter.config", "io.funkye.redis.cache.starter.service",
-    "io.funkye.redis.cache.starter.aspect"})
+@ComponentScan(basePackages = {"funkye.icu.redis.cache.starter.config", "funkye.icu.redis.cache.starter.service",
+    "funkye.icu.redis.cache.starter.aspect"})
 @EnableConfigurationProperties({JedisCacheProperties.class})
 @ConditionalOnClass(Jedis.class)
 @Configuration
