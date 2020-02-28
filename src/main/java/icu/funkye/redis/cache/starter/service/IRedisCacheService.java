@@ -1,4 +1,4 @@
-package funkye.icu.redis.cache.starter.service;
+package icu.funkye.redis.cache.starter.service;
 
 import java.time.Duration;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package funkye.icu.redis.cache.starter.config;
+package icu.funkye.redis.cache.starter.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
