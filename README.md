@@ -5,6 +5,16 @@ redis实现二级缓存
 
 #### 软件架构
 
+通过maven方式引入本插件依赖:
+
+```java
+<dependency>
+  <groupId>icu.funkye</groupId>
+  <artifactId>redis-cache-spring-boot-starter</artifactId>
+  <version>0.1</version>
+</dependency>
+```
+
 项目需引入如下依赖方可使用:
 
 ```java
